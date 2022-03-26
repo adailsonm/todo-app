@@ -3,13 +3,14 @@
     background: #dcdcdc;
     display: flex;
     justify-content: space-between;
-    height: 50px;
+    padding: 0 2rem;
+    height: 60px;
 }
 
 .header-span {
     font-size: 25px;
     padding: 25px;
     color: gray;
-    height: 35px;
-    width: 100%;
+    height: 30px;
+    width: 150px;
 }

@@ -3,7 +3,7 @@ import AuthMenu from '../AuthMenu';
 import './index.css'
 
 
-function Header() {
+export function Header() {
     return (
         <header className="header-top">
             <span className="header-span">Todo List</span>
@@ -11,5 +11,3 @@ function Header() {
         </header>
     )
 }
-
-export default Header

@@ -1,10 +1,8 @@
 import React from "react";
-import Box from '../Box';
+import { Box } from '../Box';
 
-function List(props) {
+export function List() {
     return(
         <Box />
     )
 }
-
-export default List;

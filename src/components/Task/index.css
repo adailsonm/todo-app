@@ -1,7 +1,7 @@
 
 .confirms {
     list-style: none;
-    padding-inline-start: 5px;
+    padding-inline-start: 8px;
 
 }
 
@@ -24,8 +24,8 @@
 }
 
 .confirms input {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     margin-right: 5px;
     position: relative;
 }
@@ -49,3 +49,4 @@
     font-weight: bold;
     border: 0;
 }
+

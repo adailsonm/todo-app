@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { AuthProvider } from './contexts/auth';
 
 import List from './components/List';
 import Form from './components/Form';
 import Header from './components/Header';
 
+import { Routes } from './routes';
 
-function Todo() {
-  const [itemsList, setItemsList] = useState([]);
-
-  function handleAddItemToList(newItem) {
-    setItemsList([...itemsList, newItem]);
-  }
-
+export function App() {
   return (
-    <div className="todo-wrapper">
-      <Header/>
-      {/* <Form onAddItem={handleAddItemToList} /> */}
-      <List itemsList={itemsList} />
+    <div className="App">
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+      
     </div>
   );
 }
 
-export default Todo;

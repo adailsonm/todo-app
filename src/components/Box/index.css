@@ -6,8 +6,8 @@
     background: #ccc;
     border: 1px solid #ccc;
     width: 350px;
-    height: 500px;
-    margin: 15px
+    height: 450px;
+    margin: 20px
 }
   
 .list {
@@ -32,10 +32,30 @@
 
 .task-todo-list {
     padding: 0; margin: 0;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: block;
 }
 
 .task-done-list {
     list-style: none;
 }
+
+.confirms {
+    list-style: none;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+.tasks li {
+    font-size: 10px;
+    display: block;
+    width: 400px;
+}
+  
+
+

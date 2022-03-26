@@ -27,21 +27,21 @@ function Task() {
                     <p>Done</p>
                 </li>
                 <ul class="confirms">
-                        <li>
-                            <div>
-                                <input type="checkbox"/>
-                            </div>
-                            <label>Güncelleme ve yenilikleri mail olarak almak istiyorum.</label>
-                        </li>
-                        <li>
-                            <div>
-                                <input type="checkbox"/>
-                            </div>
-                            <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id nisl eget nunc molestie maximus.</label>
-                        </li>
-                    </ul>
+                    <li>
+                        <div>
+                            <input type="checkbox"/>
+                        </div>
+                        <label>Güncelleme ve yenilikleri mail olarak almak istiyorum.</label>
+                    </li>
+                    <li>
+                        <div>
+                            <input type="checkbox"/>
+                        </div>
+                        <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id nisl eget nunc molestie maximus.</label>
+                    </li>
+                </ul>
             </ul>
-            
+
             <div className="addTask">
                 <input type="text" placeHolder="Task"/>
                 <button>Adicionar</button>
