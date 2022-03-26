@@ -15,8 +15,8 @@ export function Login() {
             email,
             password
         });
-        console.log(isAuthenticate);
-        if(isAuthenticate) navigate('/todo');
+        
+        navigate('/todo');
     }
     return (
         <div className='login-container'>

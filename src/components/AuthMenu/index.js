@@ -1,18 +1,21 @@
-import React from 'react'
+import React from 'react';
 import { useAuth } from '../../contexts/auth';
+
 import './index.css'
-// eslint-disable-next-line react-hooks/rules-of-hooks
 
 function AuthMenu() {
-    const { name } = useAuth();
-    
+    const { name, Logout } = useAuth();
+    function handleLogout() {
+        Logout();
+        
+    }
     return (
         <nav className="menu">
             <ul>
                 <li>
                     <span className='userName'>{name}</span><span className='arrow'></span>
                     <ul>
-                        <li><a href="/teste">Logout</a></li>
+                        <li><a onClick={handleLogout}>Logout</a></li>
                     </ul>
                 </li>
             </ul>

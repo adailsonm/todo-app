@@ -1,45 +1,47 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../service/api";
 
-const AuthContext = createContext({ signed: false});
+const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) => {
     const [token, setToken] = useState(null);
-    const [name, setName] = useState('');
+    const [name, setName] = useState(null);
     const [isAuthenticate, setAuthenticate] = useState(false);
 
     useEffect(() => {
-      const storagedToken = sessionStorage.getItem("@App:token");
-      const storagedName = sessionStorage.getItem("@App:name");
+      const storagedToken = localStorage.getItem("@App:token");
+      const storagedName = localStorage.getItem("@App:name");
 
       if(storagedToken) {
         setToken(storagedToken);
-        setAuthenticate(true);
         setName(storagedName);
+        setAuthenticate(true);
+        
         api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
       }
     }, []);
 
     async function Login(data) {
       const response = await api.post('/users/login', data);
+      api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+      localStorage.setItem('@App:token', response.data.token);
+      localStorage.setItem('@App:name', response.data.name);
       setToken(response.data.token);
       setName(response.data.name);
-      api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
-      sessionStorage.setItem('@App:token', response.data.token);
-      sessionStorage.setItem('@App:name', response.data.name);
       setAuthenticate(true);
+
     }
 
     function Logout() {
-      sessionStorage.removeItem('@App:token');
-      sessionStorage.removeItem('@App:name');
+      localStorage.removeItem('@App:token');
+      localStorage.removeItem('@App:name');
       setToken(null);
       setAuthenticate(false)
       setName('');
     }
 
     return (
-      <AuthContext.Provider value={{ signed: true, isAuthenticate, name, Login, Logout}}>
+      <AuthContext.Provider value={{ isAuthenticate, name, Login, Logout}}>
         {children}
       </AuthContext.Provider>
     )

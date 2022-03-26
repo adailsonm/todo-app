@@ -1,47 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './index.css';
 
-function Task() {
+function Task(props) {
+
+    const filterTasksTodo = props.tasks.filter(task => {
+        return task.status === 1;
+    });
+
+    const filterTasksDone = props.tasks.filter(task => {
+        return task.status === 2;
+    });
+
     return (
         <div className="list">
             <ul className="task-status-list">
                 <li>
                     <p>To do</p>
                 </li>
-                <ul className="confirms">
-                    <li>
-                        <div>
-                            <input type="checkbox"/>
-                        </div>
-                        <label>Güncelleme ve yenilikleri mail olarak almak istiyorum.</label>
-                    </li>
-                    <li>
-                        <div>
-                            <input type="checkbox"/>
-                        </div>
-                        <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id nisl eget nunc molestie maximus.</label>
-                    </li>
-                </ul>
-                        
+                { filterTasksTodo.map(task => {
+                    return (
+                        <>
+                            <ul className="confirms">
+                                    <li>
+                                            <div>
+                                                <input type="checkbox"/>
+                                            </div>
+                                            <label>{task.description}</label>
+                                    </li>
+                            </ul>
+                        </>)
+                })}
                 <li>
                     <p>Done</p>
                 </li>
-                <ul className="confirms">
-                    <li>
-                        <div>
-                            <input type="checkbox"/>
-                        </div>
-                        <label>Güncelleme ve yenilikleri mail olarak almak istiyorum.</label>
-                    </li>
-                    <li>
-                        <div>
-                            <input type="checkbox"/>
-                        </div>
-                        <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id nisl eget nunc molestie maximus.</label>
-                    </li>
-                </ul>
+                { filterTasksDone.map(task => {
+                    return (
+                        <>
+                            <ul className="confirms">
+                                    <li>
+                                            <div>
+                                                <input type="checkbox" checked={task.finished_at}/>
+                                            </div>
+                                            <label>{ task.description }</label>
+                                    </li>
+                            </ul>
+                        </>
+                    )
+                })}
             </ul>
-
             <div className="addTask">
                 <input type="text" placeholder="Task"/>
                 <button>Adicionar</button>
