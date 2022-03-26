@@ -8,7 +8,7 @@ function Task() {
                 <li>
                     <p>To do</p>
                 </li>
-                <ul class="confirms">
+                <ul className="confirms">
                     <li>
                         <div>
                             <input type="checkbox"/>
@@ -26,7 +26,7 @@ function Task() {
                 <li>
                     <p>Done</p>
                 </li>
-                <ul class="confirms">
+                <ul className="confirms">
                     <li>
                         <div>
                             <input type="checkbox"/>
@@ -43,7 +43,7 @@ function Task() {
             </ul>
 
             <div className="addTask">
-                <input type="text" placeHolder="Task"/>
+                <input type="text" placeholder="Task"/>
                 <button>Adicionar</button>
             </div>
         </div>

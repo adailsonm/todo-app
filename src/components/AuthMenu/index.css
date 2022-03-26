@@ -10,7 +10,7 @@
     display: inline;
     position: relative;
 }
-.menu span::after {
+.arrow::after {
     width: 0;
     height: 0;
     border: 0.313em solid transparent;
@@ -22,8 +22,11 @@
     position: relative;
     right: -0.313em;
 }
+.userName {
+    color: gray;
+}
 
-.menu ul li a {
+.menu ul li p {
     color: gray;
     text-decoration: none;
     display: flex;
