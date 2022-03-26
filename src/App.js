@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import List from './components/List';
+import Form from './components/Form';
+import Header from './components/Header';
+
+
+function Todo() {
+  const [itemsList, setItemsList] = useState([]);
+
+  function handleAddItemToList(newItem) {
+    setItemsList([...itemsList, newItem]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="todo-wrapper">
+      <Header/>
+      {/* <Form onAddItem={handleAddItemToList} /> */}
+      <List itemsList={itemsList} />
     </div>
   );
 }
 
-export default App;
+export default Todo;

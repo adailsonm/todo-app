@@ -1,0 +1,15 @@
+.header-top {
+    align-items: center;
+    background: #dcdcdc;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.header-span {
+    font-size: 25px;
+    padding: 25px;
+    color: gray;
+    height: 35px;
+    width: 100%;
+}

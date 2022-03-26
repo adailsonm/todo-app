@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    background: #ccc;
+    border: 1px solid #ccc;
+    width: 350px;
+    height: 500px;
+    margin: 15px
+}
+  
+.list {
+    flex: 1;
+    overflow: auto;
+}
+  
+.title {
+    height: 15px;
+    background-color: rgba(148, 147, 147, 0.747);
+    color: rgb(27, 26, 26);
+    border-radius: 2px;
+    padding: 10px;
+}
+.task-status-list {
+    list-style: none;
+    padding-inline-start: 10px;
+}
+.task-status-list p {
+    font-size: 18px;
+}
+
+.task-todo-list {
+    padding: 0; margin: 0;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.task-done-list {
+    list-style: none;
+}
