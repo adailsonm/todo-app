@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './index.css';
 
 function Task(props) {
+    const [taskFinish, setTaskFinish] = useState(false);
 
     const filterTasksTodo = props.tasks.filter(task => {
         return task.status === 1;
@@ -11,6 +12,12 @@ function Task(props) {
         return task.status === 2;
     });
 
+    function handleCheckFinish() {
+        if(taskFinish === false) {
+            console.log("entrou");
+            setTaskFinish(true);
+        } 
+    }
     return (
         <div className="list">
             <ul className="task-status-list">
@@ -23,7 +30,7 @@ function Task(props) {
                             <ul className="confirms">
                                 <li>
                                     <div>
-                                        <input type="checkbox"/>
+                                        <input type="checkbox" onChange={() => handleCheckFinish()}/>
                                     </div>
                                     <label>{task.description}</label>
                                 </li>
@@ -42,7 +49,7 @@ function Task(props) {
                                     <div>
                                         <input type="checkbox" checked={task.finished_at}/>
                                     </div>
-                                    <label>{ task.description }</label>
+                                    <label>{ task.description } {task.finished_at !== undefined ? `- ${task.finished_at}` : '' }</label>
                                 </li>
                             </ul>
                         </>

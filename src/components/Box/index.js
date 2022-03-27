@@ -5,13 +5,15 @@ import { api } from "../../service/api";
 import { toast } from "react-toastify";
 
 export function Box(props) {
-    const [task, setTask] = useState('');
-
+    const [descriptionTask, setDescriptionTask] = useState('');
+    
     const handleStoreTaskAndAssociateProject = async (id) => {
         try {
             let response = await api.post(`/projects/${id}/associate/task`, {
-                description: task,
+                description: descriptionTask,
             });
+            props.onTaskCreate()
+            
             toast.success(response.data.message, {
                 position: "top-right",
                 autoClose: 5000,
@@ -45,9 +47,9 @@ export function Box(props) {
                         {props.project.name}
                     </span>
                 </div>
-                <Task tasks={props.project.tasks} key={props.project._id}/>
+                <Task tasks={props.project.tasks} key={Math.random()}/>
                 <div className="addTask">
-                    <input type="text" value={task} onChange={event => setTask(event.target.value)} placeholder="Task" />
+                    <input type="text" value={descriptionTask} onChange={event => setDescriptionTask(event.target.value)} placeholder="Task" />
                     <button onClick={() => handleStoreTaskAndAssociateProject(props.project._id)}>Adicionar</button>
                 </div>
             </>
