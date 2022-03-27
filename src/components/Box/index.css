@@ -1,8 +1,4 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
     background: #ccc;
     border: 1px solid #ccc;
     width: 80%;
@@ -80,16 +76,20 @@
 .title {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 
 .title button {
     border: none;
     color: #fff;
-    background-color: #ccc;
+    background-color: rgba(148, 147, 147, 0.747);
 }
 
-.title button:hover{
+.actions button:hover{
     background-color: #a8a8a8;
+}
+
+.actions button {
+    margin: 2px;
 }

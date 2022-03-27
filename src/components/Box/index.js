@@ -5,10 +5,13 @@ import { api } from "../../service/api";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
+import Modal from "../Modal";
 
 export function Box(props) {
     const [descriptionTask, setDescriptionTask] = useState('');
-    
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [dataModal, setDataModal] = useState({});
+
     const handleStoreTaskAndAssociateProject = async (id) => {
         try {
             let response = await api.post(`/projects/${id}/associate/task`, {
@@ -67,21 +70,52 @@ export function Box(props) {
             }
         }
     }
+
+    const handleEditProject = async (id) => {
+        let response = await api.get(`/projects/${id}`);
+        setDataModal(response.data.item);
+        setIsModalVisible(true);
+
+    }
     return (
         <div className="container">
+            { isModalVisible ? 
+                <Modal onClose={() => setIsModalVisible(false)}>
+                    <div className="edit-modal">
+                        <label for="name">Nome do Projeto: </label>
+                        <input type="text" name="name" value={dataModal.name} className="inputText"/>
+                        <h4>Usuários associados: </h4>
+                        <div className="assoc-user">
+                            { dataModal.users.length > 0 ? dataModal.users.map((item) => {
+                                return (
+                                    <>
+                                        <input type="checkbox" defaultChecked={item.name ? true : false}/>
+                                        <label>{item.name}</label>
+                                    </>
+                                )
+                            }) : <h1>Não há usuário associado a este projeto</h1>}
+                            
+                        </div>
+
+                    </div>
+                </Modal>
+            : null}
             <>
                 <div className="container-title">
                     <div className="title">
                         <span>
                             {props.project.name}
                         </span>
-                        <button>
-                            <FontAwesomeIcon icon={faEdit} />
-                        </button>
-                        <button onClick={() => handleDeleteProject(props.project._id)}>
-                            <FontAwesomeIcon icon={faTrash}/>
-                        </button>
+                        <div className="actions">
+                            <button onClick={() => handleEditProject(props.project._id)}>
+                                <FontAwesomeIcon icon={faEdit} />
+                            </button>
+                            <button onClick={() => handleDeleteProject(props.project._id)}>
+                                <FontAwesomeIcon icon={faTrash}/>
+                            </button>
+                        </div>
                     </div>
+
                 </div>
 
                 
