@@ -89,7 +89,7 @@ export function Box(props) {
                             { dataModal.users.length > 0 ? dataModal.users.map((item) => {
                                 return (
                                     <>
-                                        <input type="checkbox" defaultChecked={item.name ? true : false}/>
+                                        <input type="checkbox" checked/>
                                         <label>{item.name}</label>
                                     </>
                                 )

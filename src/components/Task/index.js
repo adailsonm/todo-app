@@ -83,7 +83,7 @@ function Task(props) {
                             <ul className="confirms">
                                 <li>
                                     <div>
-                                        <input type="checkbox" defaultChecked={task.finished_at}/>
+                                        <input type="checkbox" checked={task.finished_at}/>
                                     </div>
                                     <div className="container-label">
                                         <label>{ task.description }</label>

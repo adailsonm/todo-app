@@ -35,7 +35,8 @@
     display: none;
     left: 0;
     position: absolute;
-    background-color: #ccc;
+    background-color: #e0e0e4;
+    border: 1px #ccc solid;
 }
 
 .menu ul li:hover ul {
@@ -44,6 +45,7 @@
 
 .userName {
     color: gray;
+    
 }
 
 .menu ul ul {
@@ -52,4 +54,8 @@
 
 .menu ul ul li a {
     display: block;
+}
+
+.menu ul ul li a:hover {
+    background-color: #ccc;
 }

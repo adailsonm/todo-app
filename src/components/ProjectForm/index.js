@@ -8,7 +8,6 @@ export function ProjectForm(props) {
 
     function handleChangeInput(event) {
         let inputTask = event.target.value;
-
         setProject(inputTask);
     }
 
@@ -29,6 +28,7 @@ export function ProjectForm(props) {
                 draggable: true,
                 progress: undefined,
             })
+            setProject('');
         } catch(error) {
             if(error.response) {
                 toast.error(error.response.data.message, {
@@ -49,7 +49,7 @@ export function ProjectForm(props) {
     return (
         <div className="box-form">
             <p>Create new Project</p>
-            <input type="text" onChange={handleChangeInput} placeholder="Project name" />
+            <input type="text" value={project} onChange={handleChangeInput} placeholder="Project name" />
             <button type='submit' onClick={handleCreateProject}>Create Project</button>
         </div>
     )
