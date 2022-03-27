@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { api } from "../../service/api";
 import './index.css';
 
 function Task(props) {
+    const [task, setTask] = useState({});
 
     const filterTasksTodo = props.tasks.filter(task => {
         return task.status === 1;
@@ -21,14 +23,15 @@ function Task(props) {
                     return (
                         <>
                             <ul className="confirms">
-                                    <li>
-                                            <div>
-                                                <input type="checkbox"/>
-                                            </div>
-                                            <label>{task.description}</label>
-                                    </li>
+                                <li>
+                                    <div>
+                                        <input type="checkbox"/>
+                                    </div>
+                                    <label>{task.description}</label>
+                                </li>
                             </ul>
-                        </>)
+                        </>
+                    )
                 })}
                 <li>
                     <p>Done</p>
@@ -37,21 +40,17 @@ function Task(props) {
                     return (
                         <>
                             <ul className="confirms">
-                                    <li>
-                                            <div>
-                                                <input type="checkbox" checked={task.finished_at}/>
-                                            </div>
-                                            <label>{ task.description }</label>
-                                    </li>
+                                <li>
+                                    <div>
+                                        <input type="checkbox" checked={task.finished_at}/>
+                                    </div>
+                                    <label>{ task.description }</label>
+                                </li>
                             </ul>
                         </>
                     )
                 })}
             </ul>
-            <div className="addTask">
-                <input type="text" placeholder="Task"/>
-                <button>Adicionar</button>
-            </div>
         </div>
 
     );   

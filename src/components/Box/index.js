@@ -1,32 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Task from '../Task';
 import './index.css';
 import { api } from "../../service/api";
 
-export function Box() {
-    const [projects, setProjects] = useState([]);
-    useEffect(() => {
-        const getProjects = async () => {
-            const response = await api.get('/projects');
-            setProjects(response.data.items);
-        }
-        getProjects();
-    }, [])
+export function Box(props) {
+    const [task, setTask] = useState('');
+    const handleStoreTaskAndAssociateProject = async (id) => {
+        let response = await api.post(`/projects/${id}/associate/task`, {
+            description: task,
+        });
+
+    }
     return (
         <div className="container">
-            {projects ? projects.map((project) => {
-                return (
                     <>
                         <div className="title">
                             <span>
-                                {project.name}
+                                {props.project.name}
                             </span>
                         </div>
-                        <Task tasks={project.tasks}/>
+                        <Task tasks={props.project.tasks}/>
+                        <div className="addTask">
+                            <input type="text" value={task} onChange={event => setTask(event.target.value)} placeholder="Task" />
+                            <button onClick={() => handleStoreTaskAndAssociateProject(props.project._id)}>Adicionar</button>
+                        </div>
                     </>
-                )
-            }) : <h1>Nenhum</h1>}
-
         </div>
     );
 }
