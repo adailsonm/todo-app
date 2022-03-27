@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import { api } from "../../service/api";
 import { Box } from '../Box';
-import Form from "../Form";
+import { ProjectForm } from "../ProjectForm";
 import './index.css';
 
 export function List() {
@@ -25,7 +25,7 @@ export function List() {
             }
         }
     }
-    
+
     useEffect(() => {
         getProjects();
     }, []);
@@ -39,7 +39,7 @@ export function List() {
                     )
                 }) : <div className="container">Não há projeto associado ao seu usuário</div> 
             }
-            <Form/>
+            <ProjectForm onCreateProject={() => getProjects()}/>
         </div>
 
     )

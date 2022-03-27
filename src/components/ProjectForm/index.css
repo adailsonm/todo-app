@@ -5,9 +5,9 @@
     justify-content: center;
     background: #ccc;
     border: 1px solid #ccc;
-    width: 350px;
+    width: 60%;
     height: 250px;
-    margin: 20px;
+    margin: 10px;
     border-radius: 5px;
     order: 0;
 }
@@ -28,8 +28,12 @@
     margin: 10px;
     border: none;
     width: 50%;
-    height: 25px;
+    height: 13%;
     border-radius: 3px;
     color: #fff;
     background-color: #27aaca;
+}
+
+.box-form button:hover{
+    background-color: #6ecfe7;
 }

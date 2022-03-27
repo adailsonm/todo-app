@@ -1,6 +1,4 @@
-.menu nav {
-    left: 20px;
-}
+
 .menu ul {
     list-style-type: none;
     padding: 0;
@@ -20,18 +18,15 @@
     vertical-align: middle;
     display: inline-block;
     position: relative;
-    right: -0.313em;
-}
-.userName {
-    color: gray;
+    right: -0.300em;
 }
 
-.menu ul li p {
+.menu ul li a {
     color: gray;
     text-decoration: none;
     display: flex;
     align-content: flex-end;
-    padding: 20px;
+    padding: 14px;
     transition: background .3s;
 }
 
@@ -47,11 +42,14 @@
     display: block;
 }
 
+.userName {
+    color: gray;
+}
+
 .menu ul ul {
-    width: 145px
+    width: 170px
 }
 
 .menu ul ul li a {
     display: block;
-    color: #fff;
 }

@@ -1,4 +1,10 @@
+import { format, parse, parseISO } from "date-fns";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { api } from "../../service/api";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
+
 import './index.css';
 
 function Task(props) {
@@ -12,12 +18,40 @@ function Task(props) {
         return task.status === 2;
     });
 
-    function handleCheckFinish() {
-        if(taskFinish === false) {
-            console.log("entrou");
+    const handleCheckFinish = async (id) =>  {
+        try {
+            let response = await api.put(`/tasks/${id}`, {
+                finished_at: new Date(),
+                status: 2,
+            });
+            props.onTaskUpdate();
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
             setTaskFinish(true);
-        } 
+
+        } catch(error) {
+            if(error.response) {
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        }
+
     }
+    const formattedDate = (date) => format(parseISO(date), 'dd/MM/yyyy HH:mm');
     return (
         <div className="list">
             <ul className="task-status-list">
@@ -30,9 +64,11 @@ function Task(props) {
                             <ul className="confirms">
                                 <li>
                                     <div>
-                                        <input type="checkbox" onChange={() => handleCheckFinish()}/>
+                                        <input type="checkbox" onChange={() => handleCheckFinish(task._id)} />
                                     </div>
                                     <label>{task.description}</label>
+                                    <FontAwesomeIcon icon={faEdit}/>
+                                    <FontAwesomeIcon icon={faTrash}/>
                                 </li>
                             </ul>
                         </>
@@ -49,7 +85,10 @@ function Task(props) {
                                     <div>
                                         <input type="checkbox" checked={task.finished_at}/>
                                     </div>
-                                    <label>{ task.description } {task.finished_at !== undefined ? `- ${task.finished_at}` : '' }</label>
+                                    <div className="container-label">
+                                        <label>{ task.description }</label>
+                                        <label className="finished-label">{task.finished_at !== undefined ? `Finalizado em: ${formattedDate(task.finished_at)}` : '' }</label>
+                                    </div>
                                 </li>
                             </ul>
                         </>

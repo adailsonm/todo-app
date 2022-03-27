@@ -1,15 +1,15 @@
 
 .confirms {
     list-style: none;
-    padding-inline-start: 8px;
-
+    padding-inline-start: 5px;
+    
 }
 
 .tasks {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .tasks li {
@@ -19,7 +19,7 @@
 }
 
 .confirms li {
-    font-size: 14px;
+    font-size: 13px;
     display: flex;
 }
 
@@ -29,24 +29,22 @@
     margin-right: 5px;
     position: relative;
 }
-
-.addTask {
-    margin: 10px;
+.container-label {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    font-size: 12px;
 }
 
-.addTask input {
-    width: 60%;
-    height: 25px;
-    margin: 10px;
-}
-
-.addTask button {
-    background-color: green;
-    border-radius: 3px;
-    width: 80px;
-    height: 30px;
-    color: #fff;
+.finished-label {
+    font-size: 10px;
     font-weight: bold;
-    border: 0;
+    padding: 5px;
+}
+.confirms svg {
+    margin-left: 10px;
 }
 
+.confirms svg {
+    cursor: pointer;
+}
