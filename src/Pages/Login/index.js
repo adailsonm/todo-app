@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth';
 
 import './index.css';
@@ -37,9 +37,9 @@ export function Login() {
                 <button onClick={handleLogin}>Login</button>
             </div>
 
-            <div className='register-container'>
+            <div className='not-with-account-container'>
                 <p>Ainda não tem conta ?</p>
-                <button>Registrar</button>
+                <Link to="/register">Registrar</Link>
             </div>
         </div>
     )

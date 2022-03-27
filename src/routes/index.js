@@ -2,19 +2,19 @@ import { BrowserRouter as Router, Route, Routes as Switch, Navigate } from "reac
 import { useAuth } from "../contexts/auth";
 import { Home } from "../Pages/Home";
 import { Login } from "../Pages/Login";
+import { Register } from "../Pages/Register";
 
 export function Routes() {
-    const { isAuthenticate } = useAuth();
+    const { isAuthenticate, loading } = useAuth();
     return (
         <Router>
-            <Switch>
-                { isAuthenticate ? (
-                     <Route path="/" element={<Navigate to="/todo" replace />} />
-                ): ( <Route path="/" element={<Navigate to="/login" replace />} /> )}
-                <Route path="/login" element={<Login />} />
-                <Route path="/todo" element={<Home />} />
-
-            </Switch>
+            <>
+                <Switch>
+                    <Route path="/login" element={isAuthenticate ? <Navigate to="/todo" /> : <Login/>} />
+                    <Route path="/todo" element={<Home />} />
+                    <Route path="/register" element={<Register />} />
+                </Switch>
+            </>
         </Router>
     )
 }

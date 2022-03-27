@@ -1,5 +1,5 @@
 import { format, parse, parseISO } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../../service/api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -37,6 +37,7 @@ function Task(props) {
             setTaskFinish(true);
 
         } catch(error) {
+            setTaskFinish(false);
             if(error.response) {
                 toast.error(error.response.data.message, {
                     position: "top-right",

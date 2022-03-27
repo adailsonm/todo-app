@@ -7,16 +7,15 @@ const AuthContext = createContext({});
 export const AuthProvider = ({children}) => {
     const [token, setToken] = useState(null);
     const [name, setName] = useState(null);
-    const [isAuthenticate, setAuthenticate] = useState(false);
+    const [isAuthenticate, setIsAuthenticate] = useState(false);
 
     useEffect(() => {
       const storagedToken = localStorage.getItem("@App:token");
       const storagedName = localStorage.getItem("@App:name");
-
       if(storagedToken) {
+        setIsAuthenticate(true);
         setToken(storagedToken);
         setName(storagedName);
-        setAuthenticate(true);
         
         api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
       }
@@ -30,7 +29,7 @@ export const AuthProvider = ({children}) => {
         localStorage.setItem('@App:name', response.data.name);
         setToken(response.data.token);
         setName(response.data.name);
-        setAuthenticate(true);
+        setIsAuthenticate(true);
       } catch(error) {
         if(error.response) {
           toast.error(error.response.data.message, {
@@ -50,12 +49,12 @@ export const AuthProvider = ({children}) => {
       localStorage.removeItem('@App:token');
       localStorage.removeItem('@App:name');
       setToken(null);
-      setAuthenticate(false)
+      setIsAuthenticate(false)
       setName('');
     }
 
     return (
-      <AuthContext.Provider value={{ isAuthenticate, name, Login, Logout}}>
+      <AuthContext.Provider value={{ isAuthenticate, name, token, Login, Logout}}>
         {children}
       </AuthContext.Provider>
     )

@@ -7,11 +7,13 @@ import './index.css';
 
 export function List() {
     const [projects, setProjects] = useState([]);
+    
     const getProjects = async () => {
         try {
             const response = await api.get('/projects');
             setProjects(response.data.items);
         } catch(error) {
+            setProjects([])
             if(error.response) {
                 toast.error(error.response.data.message, {
                     position: "top-right",
@@ -27,7 +29,10 @@ export function List() {
     }
 
     useEffect(() => {
-        getProjects();
+        setTimeout(() => {
+            getProjects();
+
+        }, 200)
     }, []);
 
     return(

@@ -62,11 +62,11 @@
     background-color: #323232;
 }
 
-.register-container p {
+.not-with-account-container p {
     margin-bottom: 10px;
 }
 
-.register-container button {
+.not-with-account-container a {
     font-size: 15px;
     text-decoration: none;
     display: block;
@@ -85,6 +85,6 @@
     cursor: pointer
 }
 
-.register-container button:hover {
+.not-with-account-container a:hover {
     background-color: #fff;
 }
