@@ -2,6 +2,8 @@ import React,{ useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import { api } from "../../service/api";
 import { Box } from '../Box';
+import Form from "../Form";
+import './index.css';
 
 export function List() {
     const [projects, setProjects] = useState([]);
@@ -25,18 +27,19 @@ export function List() {
             }
         }
         getProjects();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [projects]);
+    }, []);
 
     return(
-        <>
+        <div className="box-container">
             {
-                projects ? projects.map((project) => {
+                projects.length > 0 ? projects.map((project) => {
                     return (
-                        <Box project={project}/>
+                        <Box project={project} key={project._id}/>
                     )
-                }) : ''}
-        </>
+                }) : <div className="container">Não há projeto associado ao seu usuário</div> 
+            }
+            <Form/>
+        </div>
 
     )
 }

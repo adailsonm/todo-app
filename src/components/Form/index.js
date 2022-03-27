@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './index.css';
 
 function Form(props) {
     const [task, setTask] = useState("");
@@ -20,10 +21,11 @@ function Form(props) {
 
 
     return (
-        <form>
-            <input type="text" onChange={handleChangeInput} value={task} />
-            <button type='submit' onClick={handleAddItemToList}>Adicionar</button>
-        </form>
+        <div className="box-form">
+            <p>Create new Project</p>
+            <input type="text" onChange={handleChangeInput} placeholder="Project name" />
+            <button type='submit' onClick={handleAddItemToList}>Create Project</button>
+        </div>
     )
 
 }

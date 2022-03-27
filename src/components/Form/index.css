@@ -1,0 +1,35 @@
+.box-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ccc;
+    border: 1px solid #ccc;
+    width: 350px;
+    height: 250px;
+    margin: 20px;
+    border-radius: 5px;
+    order: 0;
+}
+
+.box-form p {
+    font-size: 20px;
+}
+
+.box-form input {
+    border: 1px #a9a9a9 solid;
+    width: 50%;
+    height: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.box-form button {
+    margin: 10px;
+    border: none;
+    width: 50%;
+    height: 25px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #27aaca;
+}

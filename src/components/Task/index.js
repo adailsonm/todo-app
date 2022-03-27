@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { api } from "../../service/api";
+import React from "react";
 import './index.css';
 
 function Task(props) {
-    const [task, setTask] = useState({});
 
     const filterTasksTodo = props.tasks.filter(task => {
         return task.status === 1;
@@ -51,6 +49,7 @@ function Task(props) {
                     )
                 })}
             </ul>
+            
         </div>
 
     );   

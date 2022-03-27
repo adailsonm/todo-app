@@ -1,30 +1,56 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Task from '../Task';
 import './index.css';
 import { api } from "../../service/api";
+import { toast } from "react-toastify";
 
 export function Box(props) {
     const [task, setTask] = useState('');
+
     const handleStoreTaskAndAssociateProject = async (id) => {
-        let response = await api.post(`/projects/${id}/associate/task`, {
-            description: task,
-        });
+        try {
+            let response = await api.post(`/projects/${id}/associate/task`, {
+                description: task,
+            });
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        } catch(error) {
+            if(error.response) {
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        }
+
 
     }
     return (
         <div className="container">
-                    <>
-                        <div className="title">
-                            <span>
-                                {props.project.name}
-                            </span>
-                        </div>
-                        <Task tasks={props.project.tasks}/>
-                        <div className="addTask">
-                            <input type="text" value={task} onChange={event => setTask(event.target.value)} placeholder="Task" />
-                            <button onClick={() => handleStoreTaskAndAssociateProject(props.project._id)}>Adicionar</button>
-                        </div>
-                    </>
+            <>
+                <div className="title">
+                    <span>
+                        {props.project.name}
+                    </span>
+                </div>
+                <Task tasks={props.project.tasks} key={props.project._id}/>
+                <div className="addTask">
+                    <input type="text" value={task} onChange={event => setTask(event.target.value)} placeholder="Task" />
+                    <button onClick={() => handleStoreTaskAndAssociateProject(props.project._id)}>Adicionar</button>
+                </div>
+            </>
         </div>
     );
 }

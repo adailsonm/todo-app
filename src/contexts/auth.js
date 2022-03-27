@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { api } from "../service/api";
 
 const AuthContext = createContext({});
@@ -22,14 +23,27 @@ export const AuthProvider = ({children}) => {
     }, []);
 
     async function Login(data) {
-      const response = await api.post('/users/login', data);
-      api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
-      localStorage.setItem('@App:token', response.data.token);
-      localStorage.setItem('@App:name', response.data.name);
-      setToken(response.data.token);
-      setName(response.data.name);
-      setAuthenticate(true);
-
+      try {
+        const response = await api.post('/users/login', data);
+        api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+        localStorage.setItem('@App:token', response.data.token);
+        localStorage.setItem('@App:name', response.data.name);
+        setToken(response.data.token);
+        setName(response.data.name);
+        setAuthenticate(true);
+      } catch(error) {
+        if(error.response) {
+          toast.error(error.response.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+          });
+        }
+      }
     }
 
     function Logout() {
