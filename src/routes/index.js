@@ -10,6 +10,7 @@ export function Routes() {
         <Router>
             <>
                 <Switch>
+                    <Route path="/" element={<Navigate to="/login"/>}/>
                     <Route path="/login" element={isAuthenticate ? <Navigate to="/todo" /> : <Login/>} />
                     <Route path="/todo" element={<Home />} />
                     <Route path="/register" element={<Register />} />
