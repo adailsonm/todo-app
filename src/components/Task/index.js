@@ -52,6 +52,37 @@ function Task(props) {
         }
 
     }
+
+    const handleRemoveTask = async (id) =>  {
+        try {
+            let response = await api.delete(`/tasks/${id}`);
+            props.onTaskUpdate();
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+
+        } catch(error) {
+            if(error.response) {
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        }
+
+    }
+
     const formattedDate = (date) => format(parseISO(date), 'dd/MM/yyyy HH:mm');
     return (
         <div className="list">
@@ -68,8 +99,11 @@ function Task(props) {
                                         <input type="checkbox" onChange={() => handleCheckFinish(task._id)} />
                                     </div>
                                     <label>{task.description}</label>
-                                    <FontAwesomeIcon icon={faEdit}/>
-                                    <FontAwesomeIcon icon={faTrash}/>
+                                    <div className="actions">
+                                        <button onClick={() => {}}><FontAwesomeIcon icon={faEdit}/></button>
+                                        <button onClick={() => handleRemoveTask(task._id)}><FontAwesomeIcon icon={faTrash}/></button>
+                                    </div>
+
                                 </li>
                             </ul>
                         </>

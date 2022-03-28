@@ -1,8 +1,7 @@
 
 .confirms {
     list-style: none;
-    padding-inline-start: 5px;
-    
+    border: 1px #000 solid;  
 }
 
 .tasks {
@@ -19,14 +18,15 @@
 }
 
 .confirms li {
-    font-size: 13px;
+    font-size: 11px;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .confirms input {
     width: 15px;
     height: 15px;
-    margin-right: 5px;
     position: relative;
 }
 .container-label {
@@ -41,10 +41,15 @@
     font-weight: bold;
     padding: 5px;
 }
-.confirms svg {
-    margin-left: 10px;
-}
 
 .confirms svg {
     cursor: pointer;
+}
+
+.actions button:hover{
+    background-color: #a8a8a8;
+}
+
+.actions button {
+    margin: 2px;
 }
